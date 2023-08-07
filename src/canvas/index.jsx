@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import { Canvas } from '@react-three/fiber';
 import { Environment, Center } from '@react-three/drei'
@@ -12,12 +11,12 @@ const CanvasModel = () => {
       <ambientLight intensity={ 0.5 } />
       <Environment preset='city' />
 
-      {/*<CameraRig>*/}
-        {/*<Backdrop />*/}
+      <CameraRig>
+{ /*       <Backdrop /> */}
         <Center>
           <Shirt />
         </Center>
-      {/*</CameraRig>*/}
+      </CameraRig>
     </Canvas>
   )
 }
