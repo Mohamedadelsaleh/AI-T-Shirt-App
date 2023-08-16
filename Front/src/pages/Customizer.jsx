@@ -52,7 +52,12 @@ const Customizer = () => {
           readFile={readFile}
         />
       case 'aipicker': 
-        return <AIPicker />
+        return <AIPicker 
+          aiPrompt= {aiPrompt}
+          setAiPrompt= {setAiPrompt}
+          generateImage= {generateImage}
+          handleSubmit={handleSubmit}
+        />
       default:
         return null;
     }
@@ -95,6 +100,19 @@ const Customizer = () => {
         handleDecals(type, result);
         setActiveEditorTab('');
     })
+  }
+
+  const handleSubmit = async (type) => {
+    if(!aiPrompt) return alert("Please enter a prompt");
+
+    try {
+      //back
+    }catch (err){
+      alert(err);
+    }finally {
+      setGenerateImage(false);
+      setActiveEditorTab("")
+    }
   }
 
   return (

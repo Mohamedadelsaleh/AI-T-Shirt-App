@@ -1,1 +1,0 @@
-# AI-T-Shirt-App
