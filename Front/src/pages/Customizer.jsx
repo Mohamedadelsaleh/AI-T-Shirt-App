@@ -33,7 +33,7 @@ const Customizer = () => {
 
   const snap = useSnapshot(state);
   const [file, setFile] = useState('');
-  const [aiPrompt, setAiPrompt] = useState('');
+  const [prompt, setPrompt] = useState('');
   const [generateImage, setGenerateImage] = useState(false);
   const [activeEditorTab, setActiveEditorTab] = useState('');
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -53,8 +53,8 @@ const Customizer = () => {
         />
       case 'aipicker': 
         return <AIPicker 
-          aiPrompt= {aiPrompt}
-          setAiPrompt= {setAiPrompt}
+          prompt={prompt}
+          setPrompt={setPrompt}
           generateImage= {generateImage}
           handleSubmit={handleSubmit}
         />
@@ -66,14 +66,15 @@ const Customizer = () => {
   const handleActiveFilterTab = (tabName) => {
       switch(tabName) {
         case 'logoShirt':
-          state.isLogoTexture = !activeEditorTab[tabName];
+          state.isLogoTexture = !activeFilterTab[tabName];
           break;
         case 'stylishShirt': 
-          state.isFullTexture = !activeEditorTab[tabName];
+          state.isFullTexture = !activeFilterTab[tabName];
           break
         default:
           state.isFullTexture = false;
           state.isLogoTexture = true;
+          break;
       }
 
       setActiveFilterTab((prevState => {
@@ -103,10 +104,23 @@ const Customizer = () => {
   }
 
   const handleSubmit = async (type) => {
-    if(!aiPrompt) return alert("Please enter a prompt");
+    if(!prompt) return alert("Please enter a prompt");
 
     try {
-      //back
+      setGenerateImage(true);
+      const response = await fetch('http://localhost:8080/api/v1/dalle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          prompt,
+        })
+      })
+
+      const data = await response.json();
+      console.log(data);
+      handleDecals(type, `data:image/png;base64,${data.photo}`)
     }catch (err){
       alert(err);
     }finally {
@@ -161,6 +175,13 @@ const Customizer = () => {
                 handleClick= {()=> handleActiveFilterTab(tab.name)}
               />
             ))}
+            <button className='download-btn' onClick={downloadCanvasToImage}>
+              <img
+                src={download}
+                alt='download_image'
+                className='w-3/5 h-3/5 object-contain'
+              />
+            </button>
           </motion.div>
         </>
       )}
