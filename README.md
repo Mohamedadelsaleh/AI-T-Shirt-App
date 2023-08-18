@@ -26,9 +26,8 @@ Customize Your T-Shirt Application
 [AI-T-Shirt Live Link](https://ai-t-shirt-app.vercel.app/)
 
 ## Description
-
-  In this app, I used many npm packages and all tools and packages are:
-  + ThreeJS - a powerful 3D graphics library for rendering and animating the 3D model
+In this app, I used many npm packages and all tools and packages are:
+- ThreeJS - a powerful 3D graphics library for rendering and animating the 3D model
   + React Three Fiber - a popular library for creating 3D graphics with ThreeJS in React
   + TailwindCSS - a popular utility-first CSS styling framework
   + Framer Motion - the most popular library used to bring your React website to life with animations
