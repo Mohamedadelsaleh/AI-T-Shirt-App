@@ -28,6 +28,7 @@ Customize Your T-Shirt Application
 ## Description
 
   In this app, I used many npm packages and all tools and packages are: 
+    * Bullet list
     * ThreeJS - a powerful 3D graphics library for rendering and animating the 3D model
     * React Three Fiber - a popular library for creating 3D graphics with ThreeJS in React
     * TailwindCSS - a popular utility-first CSS styling framework
